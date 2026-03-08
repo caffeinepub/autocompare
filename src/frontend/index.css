@@ -1,0 +1,136 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Outfit";
+  src: url("/assets/fonts/Outfit-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* AutoCompare dark industrial palette */
+    --background: 0.13 0.008 265;
+    --foreground: 0.95 0.01 85;
+
+    --card: 0.16 0.01 265;
+    --card-foreground: 0.95 0.01 85;
+
+    --popover: 0.18 0.012 265;
+    --popover-foreground: 0.95 0.01 85;
+
+    /* Electric amber primary */
+    --primary: 0.75 0.18 55;
+    --primary-foreground: 0.12 0.008 265;
+
+    --secondary: 0.22 0.012 265;
+    --secondary-foreground: 0.85 0.01 85;
+
+    --muted: 0.2 0.01 265;
+    --muted-foreground: 0.55 0.015 265;
+
+    --accent: 0.25 0.015 265;
+    --accent-foreground: 0.9 0.01 85;
+
+    --destructive: 0.58 0.22 25;
+    --destructive-foreground: 0.985 0 0;
+
+    --border: 0.28 0.015 265;
+    --input: 0.22 0.012 265;
+    --ring: 0.75 0.18 55;
+
+    --chart-1: 0.75 0.18 55;
+    --chart-2: 0.65 0.15 200;
+    --chart-3: 0.7 0.16 145;
+    --chart-4: 0.68 0.19 310;
+    --chart-5: 0.6 0.22 25;
+
+    --sidebar: 0.15 0.01 265;
+    --sidebar-foreground: 0.9 0.01 85;
+    --sidebar-primary: 0.75 0.18 55;
+    --sidebar-primary-foreground: 0.12 0.008 265;
+    --sidebar-accent: 0.22 0.012 265;
+    --sidebar-accent-foreground: 0.85 0.01 85;
+    --sidebar-border: 0.28 0.015 265;
+    --sidebar-ring: 0.75 0.18 55;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Outfit", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Bricolage Grotesque", sans-serif;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: oklch(var(--background));
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(var(--border));
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(var(--muted-foreground));
+}
+
+/* Gradient vehicle card image backgrounds */
+.vehicle-gradient-car {
+  background: linear-gradient(135deg, oklch(0.22 0.06 265) 0%, oklch(0.18 0.04 240) 100%);
+}
+.vehicle-gradient-bike {
+  background: linear-gradient(135deg, oklch(0.22 0.06 145) 0%, oklch(0.18 0.04 165) 100%);
+}
+.vehicle-gradient-scooter {
+  background: linear-gradient(135deg, oklch(0.22 0.06 310) 0%, oklch(0.18 0.04 290) 100%);
+}
+.vehicle-gradient-ev {
+  background: linear-gradient(135deg, oklch(0.22 0.08 200) 0%, oklch(0.18 0.06 220) 100%);
+}
+.vehicle-gradient-default {
+  background: linear-gradient(135deg, oklch(0.22 0.04 265) 0%, oklch(0.18 0.03 255) 100%);
+}
+
+/* Noise texture overlay */
+.noise-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.4;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* Suggestion item keyboard nav */
+.suggestion-item[data-selected="true"] {
+  background: oklch(var(--accent));
+}
+
+/* Search focus glow */
+.search-glow:focus-within {
+  box-shadow: 0 0 0 2px oklch(var(--ring) / 0.4), 0 4px 24px oklch(var(--primary) / 0.12);
+}
